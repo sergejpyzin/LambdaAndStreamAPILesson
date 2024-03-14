@@ -1,15 +1,16 @@
 package ru.serjey;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     public static void main(String[] args) {
 
-
         List<Department> departments = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 1; i <= 10; i++) {
             departments.add(new Department("Department #" + i));
         }
 
@@ -30,5 +31,30 @@ public class Main {
             ));
         }
 
+
+        Homework homework = new Homework();
+
+        homework.printNamesOrdered(employee);
+
+        System.out.println("==========================================");
+
+        homework.findFirstPersons(employee);
+
+        System.out.println("==========================================");
+
+        Map<Department, Person> oldestEmployeeInEachDepartment = homework.printDepartmentOldestPerson(employee);
+
+        oldestEmployeeInEachDepartment.forEach((department, person) ->
+                System.out.println(department + " -> " + person.getName()));
+
+        System.out.println("==========================================");
+
+        List<Person> people = homework.findFirstPersons(employee);
+
+        people.forEach(System.out::println);
+
+        System.out.println("==========================================");
+
+        System.out.println(homework.findTopDepartment(employee));
     }
 }
